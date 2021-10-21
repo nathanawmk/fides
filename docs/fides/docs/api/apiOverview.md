@@ -69,7 +69,16 @@ The other methods don't require request headers.
 
 ## HTTP Statuses
 
-* A successful `POST /resource_type` call returns `201`. All other calls, if successful, return  `200`.
+### Success
+
+* A successful `POST /resource_type` call returns `201`. 
+
+* A successful `DELETE /resource_type/{fides_key}` returns `204` (which means there's no response body).
+
+* All other successful calls return `200`.
+
+
+### Failure
 
 * If you pass an invalid `fides_key` path parameter to an instance endpoint (regardless of the method), the call returns `404`.
 
@@ -82,7 +91,7 @@ There are four other endpoints:
 
 * `GET /health` pings the API server to see if it's up and running. The call returns `200` if it's up and ready to receive messages, and `404` if not.
 
-* All of the  taxonomic URLs _except_ for `/data_subject` define the `GET /resource_type/visualize/{figure_type}` endpoint. The endpoint draws the resources as a hierarchical graph that's returned as an HTML file. The `figure_type` path parameter must be one of `sunburst`, `sankey`, or `text` If successful, it returns `200`; if you specify an invalid `figure_type`, it returns `400`.
+* All of the  taxonomic URLs _except_ for `/data_subject` define the `GET /resource_type/visualize/{figure_type}` endpoint. The endpoint draws the resources as a hierarchical graph and returns the drawing as  an HTML file. The `figure_type` path parameter must be one of `sunburst`, `sankey`, or `text` If successful, it returns `200`; if you specify an invalid `figure_type`, it returns `400`.
 
 ## cURL calls
 
