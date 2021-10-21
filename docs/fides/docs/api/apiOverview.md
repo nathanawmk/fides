@@ -1,4 +1,17 @@
-The fidesctl API is exceedingly formulaic, so much so that it's easier to grasp the API by understanding the formula, rather than reading through a list of endpoints.
+# API Overview
+
+The `fidesctl` API is exceedingly formulaic, so much so that it's easier to grasp the API by understanding the formula, rather than reading through a list of endpoints. The fundamental idea is that there's a set of five endpoints for each fides resource. These endpoints let you...
+
+* Create an instance of a particular resource type (E.g `POST /policy`).
+* Retrieve all instances of a resource type (`GET /policy`).
+* Retrieve a specific instance (`GET /policy/{fides_key}`).
+* Modify a specific instance (`POST /policy/{fides_key}`)
+* Delete a specific instance (`DELETE /policy/{fides_key}`)
+
+That's about all there is to it. There are an additional four endpoints that we'll look at later, but these quadruplet endpoints make up the core of the `fidesctl` API. The following sections go into more detail.
+
+
+## Nine top-level URLs
 
 The API comprises nine top-level URLs. Five of the URLs map to the modeling resources...
 
@@ -16,13 +29,15 @@ The API comprises nine top-level URLs. Five of the URLs map to the modeling reso
 * `/data_use`
 
 
-(Note to geeks: To adhere to API parlance, we should call these "resources" rather than "URLs", but we're going to stick with "URL" to distinguish the URL element from the abstract notion of a "privacy resource".)
+### Top-level URL methods
 
-All of these URLs define `POST` and `GET` methods:
+All of these top-level URLs define `POST` and `GET` methods:
 
 * `POST` creates a new instance of the resource. The payload of the request is given as a JSON object, and takes the same form as the manifest file for that resource but without the top-level property that identifies the resource type. We'll look at an example later. 
 
 * `GET` retrieves all of the instances of the resource. The response body is an array of objects that, again, take the same form as the manifest file for that resource.
+
+## Nine sub-URLs
 
 The nine top-level URLs define sub-URLs that locate a specific instance of a resource type, where the instance is identified by fides key:
 
@@ -30,6 +45,8 @@ The nine top-level URLs define sub-URLs that locate a specific instance of a res
 * `/policy/{fides_key}`
 * `/registry/{fides_key}`
 * _and so on_
+
+### Sub-URL methods
 
 Each of these sub-URLs define `POST`, `GET`, and `DELETE` methods:
 
